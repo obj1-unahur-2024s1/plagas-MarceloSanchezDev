@@ -27,10 +27,6 @@ class Pulga inherits Plaga {
 
 	const nivelDanio = poblacion * 2
 
-	method pesoPromedio() {
-		return pesoPromedio
-	}
-
 	method nivelDanio() {
 		return nivelDanio
 	}
@@ -41,10 +37,6 @@ class Garrapata inherits Plaga {
 
 	const nivelDanio = poblacion * 2
 
-	method pesoPromedio() {
-		return pesoPromedio
-	}
-
 	method nivelDanio() {
 		return nivelDanio
 	}
@@ -54,10 +46,6 @@ class Garrapata inherits Plaga {
 class Mosquito inherits Plaga {
 
 	const nivelDanio = poblacion
-
-	method pesoPromedio() {
-		return pesoPromedio
-	}
 
 	override method transmiteEnfermedad() {
 		return super() && poblacion % 3 == 0

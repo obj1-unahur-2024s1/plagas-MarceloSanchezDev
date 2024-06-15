@@ -1,20 +1,74 @@
 import plagas.*
+import elementos.*
+
 describe "test plagas" {
+
 	const cucaracha1 = new Cucaracha(pesoPromedio = 8, poblacion = 30)
 	const pulga1 = new Pulga(poblacion = 20)
 	const garrapata1 = new Garrapata(poblacion = 20)
-	const mosquito1 = new Mosquito( poblacion = 30)
-	test"obtener el daño de las plagas"{
-		assert.equals(15,cucaracha1.nivelDanio())
-		assert.equals(40,pulga1.nivelDanio())
-		assert.equals(40,garrapata1.nivelDanio())
-		assert.equals(30,mosquito1.nivelDanio())
-			
-		}
-	test"saber si una plaga transmite enfermedades o no"{
+	const mosquito1 = new Mosquito(poblacion = 30)
+
+	test"obtener el daño de las plagas" {
+		assert.equals(15, cucaracha1.nivelDanio())
+		assert.equals(40, pulga1.nivelDanio())
+		assert.equals(40, garrapata1.nivelDanio())
+		assert.equals(30, mosquito1.nivelDanio())
+	}
+
+	test"saber si una plaga transmite enfermedades o no" {
 		assert.notThat(cucaracha1.transmiteEnfermedad())
 		assert.that(pulga1.transmiteEnfermedad())
 		assert.that(garrapata1.transmiteEnfermedad())
 		assert.that(mosquito1.transmiteEnfermedad())
 	}
+
 }
+
+describe "test ataque plagas" {
+
+	const cucaracha1 = new Cucaracha(pesoPromedio = 8, poblacion = 30)
+	const pulga1 = new Pulga(poblacion = 20)
+	const garrapata1 = new Garrapata(poblacion = 20)
+	const mosquito1 = new Mosquito(poblacion = 30)
+	const hogar1 = new Hogar(nivelMugre = 2, nivelConfort = 5)
+	const huerta1 = new Huerta(capDeProduccion = 5)
+	const mascota1 = new Mascota(nivelSalud = 500)
+
+	test "ataque de cucaracha" {
+		hogar1.ataqueDePlaga(cucaracha1)
+		huerta1.ataqueDePlaga(cucaracha1)
+		mascota1.ataqueDePlaga(cucaracha1)
+		assert.equals(17, hogar1.nivelMugre())
+		assert.equals(3.5, huerta1.capDeProduccion())
+		assert.equals(500, mascota1.nivelSalud())
+	}
+
+	test "ataque de pulga" {
+		hogar1.ataqueDePlaga(pulga1)
+		huerta1.ataqueDePlaga(pulga1)
+		mascota1.ataqueDePlaga(pulga1)
+		assert.equals(42, hogar1.nivelMugre())
+		assert.equals(-9, huerta1.capDeProduccion())
+		assert.equals(460, mascota1.nivelSalud())
+	}
+
+	test "ataque de garrapata" {
+		hogar1.ataqueDePlaga(garrapata1)
+		huerta1.ataqueDePlaga(garrapata1)
+		mascota1.ataqueDePlaga(garrapata1)
+		assert.equals(42, hogar1.nivelMugre())
+		assert.equals(-9, huerta1.capDeProduccion())
+		assert.equals(460, mascota1.nivelSalud())
+	}
+
+	test "ataque de mosquito" {
+		hogar1.ataqueDePlaga(mosquito1)
+		huerta1.ataqueDePlaga(mosquito1)
+		mascota1.ataqueDePlaga(mosquito1)
+		assert.equals(32,hogar1.nivelMugre())
+		assert.equals(-8,huerta1.capDeProduccion())
+		assert.equals(470,mascota1.nivelSalud())
+	}
+
+}
+
