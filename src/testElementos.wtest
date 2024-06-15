@@ -1,0 +1,26 @@
+import elementos.*
+
+describe "test elementos" {
+	const hogar1 = new Hogar(nivelMugre = 2, nivelConfort = 5)
+	const huerta1 = new Huerta(capDeProduccion = 5)
+ 	const mascota1 = new Mascota(nivelSalud = 500)
+ 	const barrio1 = new Barrio()
+ 	method initialize(){
+ 		barrio1.agregarElementos([hogar1,huerta1,mascota1])
+ 	}
+	test"hogar1 es bueno" {
+		assert.that(hogar1.esBueno())
+	}
+
+	test"huerta1 es bueno" {
+		assert.that(huerta1.esBueno())
+	}
+
+	test"mascota1 no es buena" {
+		assert.that(mascota1.esBueno())
+	}
+	test"elbarrio es bueno"{
+		assert.that(barrio1.esBueno())
+	}
+}
+

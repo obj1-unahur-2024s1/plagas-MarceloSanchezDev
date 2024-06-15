@@ -1,0 +1,20 @@
+import plagas.*
+describe "test plagas" {
+	const cucaracha1 = new Cucaracha(pesoPromedio = 8, poblacion = 30)
+	const pulga1 = new Pulga(poblacion = 20)
+	const garrapata1 = new Garrapata(poblacion = 20)
+	const mosquito1 = new Mosquito( poblacion = 30)
+	test"obtener el daño de las plagas"{
+		assert.equals(15,cucaracha1.nivelDanio())
+		assert.equals(40,pulga1.nivelDanio())
+		assert.equals(40,garrapata1.nivelDanio())
+		assert.equals(30,mosquito1.nivelDanio())
+			
+		}
+	test"saber si una plaga transmite enfermedades o no"{
+		assert.notThat(cucaracha1.transmiteEnfermedad())
+		assert.that(pulga1.transmiteEnfermedad())
+		assert.that(garrapata1.transmiteEnfermedad())
+		assert.that(mosquito1.transmiteEnfermedad())
+	}
+}
